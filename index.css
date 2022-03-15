@@ -1,0 +1,39 @@
+body {
+  background-color: #ffffff;
+}
+
+.title {
+  font-family: "Rochester", cursive;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 62px;
+}
+
+.subBanner {
+  background-color: #333a40;
+}
+
+.subBanner-text {
+  color: white;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.subBanner-text:hover {
+  text-decoration: underline !important;
+  color: white;
+}
+
+.menuTitle {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.buy-btn {
+  background: #f2a950 !important;
+}
