@@ -31,14 +31,14 @@ const getProducts = (name) => {
     let temp;
     products.map((product) => {
       temp = foodCard;
-      temp
+      temp = temp
         .replace("{{image}}", product.image)
         .replace("{{name}}", product.name)
         .replace("{{description}}", product.description)
         .replace("{{price}}", product.price);
-    });
 
-    cardsTable.innerHTML += temp;
+      cardsTable.innerHTML += temp;
+    });
   });
 };
 
