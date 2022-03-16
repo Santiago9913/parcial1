@@ -17,7 +17,7 @@ let foodCard = `<div class="card mx-3 mb-3" style="width: 18rem;">
 </div>
 </div>`;
 
-let subTitle = `<p class="menuTitle">{{name}}</p>`;
+let subTitle = "<p class='menuTitle'>{{name}}</p>";
 
 let cartTable = `<table class="table table-striped" id="final-table">
 <thead>
@@ -43,14 +43,6 @@ let cartTable = `<table class="table table-striped" id="final-table">
   </div>
 </div>`;
 
-let newPrice = ` <div class="col">
-<h3>Total: {{price}}</h3>
-</div>
-<div class="col" id="cc-btns">
-<button type="button" class="btn cancel-btn" id="cancel">Cancel</button>
-<button type="button" class="btn confirm-btn" id="confirm">Confirm Order</button>
-</div>`;
-
 let cartElement = `<tr>
 <th scope="row">{{item}}</th>
 <td class="qty">{{Qty}}</td>
@@ -63,7 +55,6 @@ let cartElement = `<tr>
 </tr>`;
 
 let localData;
-let cartCount;
 let cart = new Map();
 
 const productsSection = document.getElementById("productsSection");
@@ -84,7 +75,7 @@ const cartBtn = document.getElementById("cart");
 
 const getOrderSize = () => {
   let size = 0;
-  cart.forEach((value, key) => {
+  cart.forEach((value) => {
     size += value.qty;
   });
 
@@ -92,27 +83,33 @@ const getOrderSize = () => {
 };
 
 const calcTotal = () => {
-  if (cart.size === 0) return 0.0;
+  if (cart.size === 0) {
+    return 0.0;
+  }
 
   let total = 0.0;
-  cart.forEach((value, key) => {
+  cart.forEach((value) => {
     total += parseFloat(value.totalPrice);
   });
 
   return parseFloat(parseFloat(total).toFixed(2));
 };
 
+// eslint-disable-next-line
 const emptyCart = () => {
   cart = new Map();
   productsSection.innerHTML = cartTable;
+  totalCartCount.classList.add("invisible");
 };
 
+// eslint-disable-next-line
 const showOrder = () => {
   const finalOrder = [];
-  cart.forEach((value, key) => {
+  cart.forEach((value) => {
     finalOrder.push(value);
   });
 
+  // eslint-disable-next-line
   console.log(finalOrder);
 };
 
@@ -161,7 +158,7 @@ const modifyOrder = (event) => {
     let i = 1;
     let temp;
 
-    cart.forEach((value, key) => {
+    cart.forEach((value) => {
       temp = cartElement
         .replace("{{item}}", i)
         .replace("{{Qty}}", value.qty)
@@ -182,7 +179,7 @@ const modifyOrder = (event) => {
     totalCartCount.classList.remove("invisible");
 
     const total = calcTotal();
-    confirmationHTML = confirmationHTML.replace("{{price}}", `\$${total}`);
+    confirmationHTML = confirmationHTML.replace("{{price}}", `$${total}`);
     confirmation.innerHTML = confirmationHTML;
   }
 };
@@ -193,7 +190,7 @@ const addEventListenersToModifiers = (btns) => {
   });
 };
 
-cartBtn.addEventListener("click", (event) => {
+cartBtn.addEventListener("click", () => {
   let newName = subTitle.replace("{{name}}", "ORDER DETAIL");
 
   productsTitle.innerHTML = newName;
@@ -208,7 +205,7 @@ cartBtn.addEventListener("click", (event) => {
 
     let i = 1;
     let temp;
-    cart.forEach((value, key) => {
+    cart.forEach((value) => {
       temp = cartElement
         .replace("{{item}}", i)
         .replace("{{Qty}}", value.qty)
@@ -224,28 +221,28 @@ cartBtn.addEventListener("click", (event) => {
     addEventListenersToModifiers(modBtns);
 
     const total = calcTotal();
-    confirmationHTML = confirmationHTML.replace("{{price}}", `\$${total}`);
+    confirmationHTML = confirmationHTML.replace("{{price}}", `$${total}`);
     confirmation.innerHTML = confirmationHTML;
   }
 });
 
-burguersProducts.addEventListener("click", (event) => {
+burguersProducts.addEventListener("click", () => {
   getProducts("Burguers");
 });
 
-tacosProducts.addEventListener("click", (event) => {
+tacosProducts.addEventListener("click", () => {
   getProducts("Tacos");
 });
 
-saladProducts.addEventListener("click", (event) => {
+saladProducts.addEventListener("click", () => {
   getProducts("Salads");
 });
 
-dessertsProducts.addEventListener("click", (event) => {
+dessertsProducts.addEventListener("click", () => {
   getProducts("Desserts");
 });
 
-drinksProducts.addEventListener("click", (event) => {
+drinksProducts.addEventListener("click", () => {
   getProducts("Drinks and Sides");
 });
 
@@ -259,8 +256,8 @@ const getProducts = (name) => {
     cardsTable.innerHTML = "";
   }
 
-  if (productsSection.innerHTML !== '<div class="row" id="cardsTable"></div>') {
-    productsSection.innerHTML = '<div class="row" id="cardsTable"></div>';
+  if (productsSection.innerHTML !== "<div class='row' id='cardsTable'></div>") {
+    productsSection.innerHTML = "<div class='row' id='cardsTable'></div>";
     cardsTable = document.getElementById("cardsTable");
   }
 
@@ -292,7 +289,7 @@ const getProducts = (name) => {
 
   buyBtns = document.querySelectorAll(".buyBtn");
   buyBtns.forEach((btn) => {
-    btn.addEventListener("click", (event) => {
+    btn.addEventListener("click", () => {
       const parent = btn.parentElement.parentElement;
       const name = parent.querySelector("h5").innerHTML;
       let price = parent.querySelector(".price").innerHTML;
