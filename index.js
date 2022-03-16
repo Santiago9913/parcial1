@@ -77,9 +77,19 @@ const tacosProducts = document.getElementById("Tacos");
 const saladProducts = document.getElementById("Salads");
 const dessertsProducts = document.getElementById("Desserts");
 const drinksProducts = document.getElementById("Drinks");
+const totalCartCount = document.getElementById("total-cart-count");
 
 let buyBtns;
 const cartBtn = document.getElementById("cart");
+
+const getOrderSize = () => {
+  let size = 0;
+  cart.forEach((value, key) => {
+    size += value.qty;
+  });
+
+  return size;
+};
 
 const calcTotal = () => {
   if (cart.size === 0) return 0.0;
@@ -118,18 +128,30 @@ const modifyOrder = (event) => {
     prodMod.totalPrice = (prodMod.price * prodMod.qty).toFixed(2);
 
     cart.set(nameMod, prodMod);
+
+    totalCartCount.innerHTML = `${getOrderSize()} items`;
+    totalCartCount.classList.remove("invisible");
   } else {
     prodMod.qty = prodMod.qty - 1;
     prodMod.totalPrice = (prodMod.price * prodMod.qty).toFixed(2);
     if (prodMod.qty === 0) {
       cart.delete(nameMod);
+
+      totalCartCount.innerHTML = `${getOrderSize()} items`;
+      totalCartCount.classList.remove("invisible");
     } else {
       cart.set(nameMod, prodMod);
+
+      totalCartCount.innerHTML = `${getOrderSize()} items`;
+      totalCartCount.classList.remove("invisible");
     }
   }
 
   if (cart.size === 0) {
     productsSection.innerHTML = cartTable;
+    !totalCartCount.classList.contains("invisible")
+      ? totalCartCount.classList.add("invisible")
+      : null;
   } else {
     productsSection.innerHTML = cartTable;
     let confirmation = productsSection.querySelector("#confirmation");
@@ -138,6 +160,7 @@ const modifyOrder = (event) => {
     let confirmationHTML = confirmation.innerHTML;
     let i = 1;
     let temp;
+
     cart.forEach((value, key) => {
       temp = cartElement
         .replace("{{item}}", i)
@@ -154,6 +177,9 @@ const modifyOrder = (event) => {
 
     const modBtns = productsSection.querySelectorAll(".mod-btn");
     addEventListenersToModifiers(modBtns);
+
+    totalCartCount.innerHTML = `${getOrderSize()} items`;
+    totalCartCount.classList.remove("invisible");
 
     const total = calcTotal();
     confirmationHTML = confirmationHTML.replace("{{price}}", `\$${total}`);
@@ -281,12 +307,16 @@ const getProducts = (name) => {
         };
 
         cart.set(name, prod);
+        totalCartCount.innerHTML = `${getOrderSize()} items`;
+        totalCartCount.classList.remove("invisible");
       } else {
         const prod = cart.get(name);
         prod.qty = prod.qty + 1;
         prod.totalPrice = (prod.price * prod.qty).toFixed(2);
 
         cart.set(name, prod);
+        totalCartCount.innerHTML = `${getOrderSize()} items`;
+        totalCartCount.classList.remove("invisible");
       }
     });
   });
