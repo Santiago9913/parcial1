@@ -32,7 +32,7 @@
         <div class="col-10">
           <h1 class="title">Restaurant & Lounge</h1>
         </div>
-        <div class="col-2">
+        <div class="col-2" id="cart">
           <img src="./assets/image 1.svg" />
         </div>
       </div>
@@ -57,19 +57,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-item" id="Burguers">
               <a class="nav-link subBanner-text">Burguers</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="Tacos">
               <a class="nav-link subBanner-text">Tacos</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="Salads">
               <a class="nav-link subBanner-text">Salads</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="Desserts">
               <a class="nav-link subBanner-text">Desserts</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="Drinks">
               <a class="nav-link subBanner-text">Drinks & Slides</a>
             </li>
           </ul>
@@ -77,10 +77,45 @@
       </nav>
     </section>
     <section class="d-flex justify-content-center mt-5">
-      <div class="row"><p class="menuTitle">BURGUERS</p></div>
+      <div class="row" id="productsTitle"><p class="menuTitle">BURGUERS</p></div>
     </section>
-    <section class="container">
+    <section class="container" id="productsSection">
       <div class="row" id="cardsTable"></div>
     </section>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cancel the order</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Are you sure about cancelling the order?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn cancel-btn"
+              onclick="emptyCart()"
+              data-bs-dismiss="modal"
+            >
+              Yes, I want to cancel the order
+            </button>
+            <button type="button" class="btn confirm-btn" data-bs-dismiss="modal">
+              No, I want to continue adding products
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

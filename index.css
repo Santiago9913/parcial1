@@ -2,6 +2,10 @@ body {
   background-color: #ffffff;
 }
 
+.nav-item:hover {
+  cursor: pointer;
+}
+
 .title {
   font-family: "Rochester", cursive;
   font-weight: 400;
@@ -36,4 +40,31 @@ body {
 
 .buy-btn {
   background: #f2a950 !important;
+}
+
+.card-name {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+}
+
+.mod-btn {
+  background: #fdcd55;
+}
+
+.cancel-btn {
+  background: #8c162c;
+  border: 1px solid #000000;
+  color: white;
+  font-weight: bold;
+}
+
+.confirm-btn {
+  background: #708c32;
+  border: 1px solid #000000;
+  color: white;
+  font-weight: bold;
 }
